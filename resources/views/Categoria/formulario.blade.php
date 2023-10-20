@@ -9,7 +9,7 @@
     $input_id = "";
 
     if(isset($categoria)) {
-        $titulo = "Alteração da categoria";
+        $titulo = "Alteração da Categoria";
         $endpoint = "/categoria/update";
         $input_nome = $categoria["nome"];
         $input_id = $categoria["id"];

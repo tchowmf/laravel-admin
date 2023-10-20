@@ -11,10 +11,7 @@ class CategoriaController extends Controller
     {
         $dados = Categoria::all()->toArray();
 
-        return View("Categoria.index",
-        [
-            'categorias' => $dados
-        ]);
+        return View("Categoria.index", ['categorias' => $dados]);
     }
 
     public function inserir()
