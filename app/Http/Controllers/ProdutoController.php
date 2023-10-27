@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Marca;
 use App\Models\Produto;
 use App\Models\Categoria;
+use App\Models\Cor;
 
 class ProdutoController extends Controller
 {
@@ -26,8 +27,14 @@ class ProdutoController extends Controller
                                     "produto.nome",
                                     "produto.quantidade",
                                     "produto.preco",
+                                    "produto.descricao",
                                     "categoria.nome AS cat",
-                                    "marca.nome as marc")
+                                    "marca.nome as marc",
+                                    "cor.nome as cor")
+                                    ->join("cor",
+                                    "cor.id",
+                                    "=",
+                                    "produto.id_cor")
                                     ->join("marca",
                                     "marca.id",
                                     "=",
@@ -44,9 +51,9 @@ class ProdutoController extends Controller
     public function inserir()
     {
         $marca = Marca::all()->toArray();
-        $produto = Produto::all()->toArray();
+        $cor = Cor::all()->toArray();
         $categoria = Categoria::all()->toArray();
-        return view("Produto.formulario", ['categoria' => $categoria, 'produto' => $produto, 'marca' => $marca]);
+        return view("Produto.formulario", ['categoria' => $categoria, 'marca' => $marca, 'cor' => $cor]);
     }
 
     public function salvar_novo(Request $request)
@@ -54,10 +61,12 @@ class ProdutoController extends Controller
         $produto = new Produto();
 
         $produto->nome = $request->input("nome");
-        $produto->id_categoria = $request->input("id_categoria");
-        $produto->id_marca = $request->input("id_marca");
         $produto->preco = $request->input("preco");
         $produto->quantidade = $request->input("quantidade");
+        $produto->descricao = $request->input("descricao");
+        $produto->id_categoria = $request->input("id_categoria");
+        $produto->id_marca = $request->input("id_marca");
+        $produto->id_cor = $request->input("id_cor");
         $produto->save();
 
         return redirect("/produto");
@@ -67,8 +76,9 @@ class ProdutoController extends Controller
     {
         $produto = Produto::find($id)->toArray();
         $marca = Marca::all()->toArray();
+        $cor = Cor::all()->toArray();
         $categoria = Categoria::all()->toArray();
-        return view("Produto.formulario", ['produto' => $produto, 'categoria' => $categoria, 'marca' => $marca]);
+        return view("Produto.formulario", ['produto' => $produto, 'categoria' => $categoria, 'marca' => $marca, 'cor' => $cor]);
     }
 
     public function salvar_update(Request $request)
@@ -77,10 +87,12 @@ class ProdutoController extends Controller
         $produto = Produto::find($id);
 
         $produto->nome = $request->input("nome");
-        $produto->id_categoria = $request->input("id_categoria");
         $produto->preco = $request->input("preco");
         $produto->quantidade = $request->input("quantidade");
+        $produto->descricao = $request->input("descricao");
+        $produto->id_categoria = $request->input("id_categoria");
         $produto->id_marca = $request->input("id_marca");
+        $produto->id_cor = $request->input("id_cor");
         $produto->save();
 
         return redirect("/produto");

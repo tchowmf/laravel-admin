@@ -410,6 +410,10 @@
     <!-- Custom scripts for all pages-->
     <script src="/js/sb-admin-2.min.js"></script>
 
+    <!-- Text Area -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+    @yield('scripts')
+
 </body>
 
 </html>

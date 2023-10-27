@@ -10,10 +10,7 @@ class CorController extends Controller
     public function index(){
         $dados = Cor::all()->toArray();
 
-        return View("Cor.index",
-        [
-            'cores' => $dados
-        ]);
+        return View("Cor.index",['cores' => $dados]);
     }
 
     public function inserir(){
