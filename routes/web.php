@@ -5,6 +5,8 @@ use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CorController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\ComprasController;
+use App\Http\Controllers\VendasController;
 
 Route::group(['prefix'=>'marca'], function(){
     Route::get('/',[MarcaController::class,'index']);
@@ -41,3 +43,22 @@ Route::group(['prefix'=>'produto'], function(){
     Route::get('/update/{id}',[ProdutoController::class,'alterar']);
     Route::post('/update',[ProdutoController::class,'salvar_update']);
 });
+
+Route::group(['prefix' => 'vendas'], function(){
+    Route::get('/',[VendasController::class,'index']);
+    Route::get('/comprar/{id}',[VendasController::class,'comprar']);
+    Route::get('/marca/{id}',[VendasController::class,'searchMarca']);
+    Route::get('/categoria/{id}', [VendasController::class, 'searchCategoria']);
+    Route::get('/carrinho/{id}', [VendasController::class, 'adicionarAoCarrinho'])->name('adicionar-ao-carrinho');
+    Route::get('/exibir-carrinho', [VendasController::class, 'exibirCarrinho'])->name('exibir-carrinho');
+    Route::get('/carrinho/remover/{id}', [VendasController::class, 'removeItemParcial'])->name('remover-do-carrinho');
+    Route::get('/carrinho/excluir/{id}', [VendasController::class, 'excluiItem'])->name('excluir-item');
+    Route::post('/finalizar-compra', [VendasController::class, 'finalizarCompra']);
+});
+
+Route::group(['prefix' => 'compras'], function(){
+    Route::get('/',[ComprasController::class,'index']);
+});
+
+
+Route::get('/', [MarcaController::class,'index']);

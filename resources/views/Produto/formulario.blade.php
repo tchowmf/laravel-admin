@@ -22,7 +22,7 @@
         $input_preco = $produto["preco"];
         $input_quantidade = $produto["quantidade"];
         $input_id_categoria = $produto["id_categoria"];
-       $input_id_cor = $produto["id_cor"];
+        $input_id_cor = $produto["id_cor"];
         $input_id_marca = $produto["id_marca"];
         $input_descricao = $produto["descricao"];
     }

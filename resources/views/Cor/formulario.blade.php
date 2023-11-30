@@ -29,7 +29,7 @@
                 <input type="hidden" name="id" value="{{ $input_id }}"/>
 
                 <label class="form-label">Nome da cor</label>
-                <input class="form-control" name="nome" placeholder="Digite a Cor" value="{{ $input_nome }}">
+                <input class="form-control" name="cor" placeholder="Digite a Cor" value="{{ $input_nome }}">
 
                 <label class="form-label">Situação</label>
                 <select class="form-control" name='situacao'>
