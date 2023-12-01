@@ -66,7 +66,7 @@
                             @if(!empty($detalhesCompra))
                                 <!-- Se existirem detalhes da compra, exiba-os -->
                                 @foreach($detalhesCompra as $item)
-                                    <p>Item: {{ $item['nome'] }}, Quantidade: {{ $item['quantidade'] }}, Valor: {{$item['preco']}}</p>
+                                    <p>Item: {{ $item['nome'] }} | Quantidade: {{ $item['quantidade'] }}| Valor: {{$item['preco'] * $item['quantidade']}}</p>
                                 @endforeach
                             @else
                                 <!-- Se não houver detalhes da compra, exiba uma mensagem indicando isso -->
