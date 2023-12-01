@@ -15,7 +15,7 @@ class ComprasController extends Controller
                                 "produto.nome",
                                 "vendas.quantidade")
                                 ->join("produto","produto.id", "=", "vendas.codigo_produto")
-                                ->orderBy("produto.id")
+                                ->orderBy("id", "DESC")
                                 ->get();
 
 
