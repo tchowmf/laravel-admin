@@ -211,9 +211,22 @@ class VendasController extends Controller
             }
 
             // Limpar a sessão do carrinho após salvar no banco de dados
-            session()->forget('carrinho');
         }
 
-        return redirect("/vendas");
+        return redirect("/vendas/checkout");
     }
+
+    public function checkout()
+{
+    $categorias = Categoria::all()->toArray();
+    $marcas = Marca::all()->toArray();
+
+    // Obter os itens do carrinho da sessão
+    $detalhesCompra = session()->get('carrinho');
+    session()->forget('carrinho');
+
+    return view('Vendas.checkout', ['detalhesCompra' => $detalhesCompra, 'categorias' => $categorias, 'marcas' => $marcas]);
+
+
+}
 }

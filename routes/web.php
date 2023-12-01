@@ -54,6 +54,7 @@ Route::group(['prefix' => 'vendas'], function(){
     Route::get('/carrinho/remover/{id}', [VendasController::class, 'removeItemParcial'])->name('remover-do-carrinho');
     Route::get('/carrinho/excluir/{id}', [VendasController::class, 'excluiItem'])->name('excluir-item');
     Route::post('/finalizar-compra', [VendasController::class, 'finalizarCompra']);
+    Route::get('/checkout',[VendasController::class,'checkout']);
 });
 
 Route::group(['prefix' => 'compras'], function(){

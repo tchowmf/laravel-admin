@@ -108,6 +108,7 @@ $totalFinalFormatado = 0.00;
                         <tbody>
                         @foreach ($carrinho as $produto)
     <tr>
+        <input type="hidden" id="nome" value="{{$produto['nome']}}">
         <td><img src="{{ asset('img/produtos/' . $produto['imagem']) }}"></td>
         <td>{{ $produto['nome'] }}</td>
         <td>
